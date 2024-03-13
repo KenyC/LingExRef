@@ -1,0 +1,17 @@
+[
+    {
+        "caption": "LingExRef: Next Ref",
+        "command": "add_ref_to_example",
+        "args" : {
+            "reverse" : false
+        }
+    },
+
+    {
+        "caption": "LingExRef: Previous Ref",
+        "command": "add_ref_to_example",
+        "args" : {
+            "reverse" : true
+        }
+    },
+]

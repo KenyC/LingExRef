@@ -1,0 +1,22 @@
+[
+    {
+        "keys": ["ctrl+alt+down"], 
+        "command": "add_ref_to_example",
+        "context": [
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex" }
+        ],
+        "args": {
+            "reverse" : false
+        }
+    },
+    {
+        "keys": ["ctrl+alt+up"], 
+        "command": "add_ref_to_example",
+        "context": [
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex" }
+        ],
+        "args": {
+            "reverse" : true
+        }
+    },
+]
