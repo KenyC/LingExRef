@@ -15,11 +15,11 @@ class AddRefToExampleCommand(sublime_plugin.TextCommand):
 		flags = 0
 		if reverse:
 			flags = flags | sublime.REVERSE
-		example_begin_tag = self.view.find(r"(\\ex)|(\\pex)", first_selection.begin(), flags)
+		example_begin_tag = self.view.find(r"((\\ex)|(\\pex))(?![a-zA-Z])", first_selection.begin(), flags)
 
 
 		if example_begin_tag:
-			example_end_tag = self.view.find(r"(\\a)|(\\xe)", example_begin_tag.end())
+			example_end_tag = self.view.find(r"((\\a)|(\\xe))(?![a-zA-Z])", example_begin_tag.end())
 			example_label_tag = self.view.find(r"\\label\{([^\}]*)\}", example_begin_tag.end())
 
 			if example_end_tag and example_label_tag and example_label_tag < example_end_tag:
