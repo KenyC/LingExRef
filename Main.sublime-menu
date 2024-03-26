@@ -1,0 +1,39 @@
+[
+    {
+        "caption": "Preferences",
+        "mnemonic": "n",
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "mnemonic": "P",
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "LingExRef",
+                        "children":
+                        [
+                            {
+                                "command": "edit_settings", "args":
+                                {
+                                    "base_file": "${packages}/LingExRef/LingExRef.sublime-settings",
+                                },
+                                "caption": "Settings"
+                            },
+                            {
+                                "command": "edit_settings",
+                                "args": {
+                                    "base_file": "${packages}/LingExRef/Default ($platform).sublime-keymap",
+                                    "default": "[\n\t$0\n]\n"
+                                },
+                                "caption": "Key Bindings"
+                            },
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

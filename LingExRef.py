@@ -38,11 +38,22 @@ class AddRefToExampleCommand(sublime_plugin.TextCommand):
 		flags = 0
 		if reverse:
 			flags = flags | sublime.REVERSE
-		example_begin_tag = self.view.find(settings.get("ex_start_delimiter"), first_selection.begin(), flags)
+
+		ex_start_delimiter = settings.get("ex_start_delimiter")
+		if ex_start_delimiter is None:
+			self.view.window().status_message("'ex_start_delimiter' setting not set")
+			return
+		ex_stop_delimiter = settings.get("ex_stop_delimiter")
+		if ex_stop_delimiter is None:
+			self.view.window().status_message("'ex_stop_delimiter' setting not set")
+			return
+
+
+		example_begin_tag = self.view.find(ex_start_delimiter, first_selection.begin(), flags)
 
 
 		if example_begin_tag:
-			example_end_tag = self.view.find(settings.get("ex_stop_delimiter"), example_begin_tag.end())
+			example_end_tag = self.view.find(ex_stop_delimiter, example_begin_tag.end())
 			example_label_tag = self.view.find(label_regex, example_begin_tag.end())
 
 			if is_not_void(example_end_tag) and is_not_void(example_label_tag) and example_label_tag < example_end_tag:
