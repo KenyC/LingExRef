@@ -13,8 +13,25 @@ This Sublime Text 3 and 4 plugin allows you quickly insert references to surroun
  
 ## Installation
 
-  1. Download this repository
-  2. Place it under the `Packages/` sub-folder of the [data directory](https://www.docs.sublimetext.info/en/latest/basic_concepts.html#the-data-directory)
+(Instructions adapted from [this README](https://github.com/valentinbarral/IpynbPreviewAsMarkdown/))
+
+### Option 1: Install Using Package Control (Recommended)
+
+1. **Install Package Control**: If you haven't already, follow the [installation instructions](https://packagecontrol.io/installation) to install Package Control.
+2. **Open Command Palette**: Use `Shift+Ctrl+P` on Windows/Linux or `Cmd+Shift+P` on macOS to open the Command Palette.
+3. **Install Package**: Type `Package Control: Install Package` and press Enter.
+4. **Find and Install**: Search for "LingExRef" in the list, then press Enter to install it.
+5. **Restart Sublime Text**: Ensure the plugin is properly loaded.
+
+### Option 2: Manual Installation
+
+1. **Download the Plugin**: Clone this repository or download the ZIP file and extract it.
+2. **Locate Sublime Text Packages Directory**:
+    - On Windows, the path is usually `C:\Users\<Your Username>\AppData\Roaming\Sublime Text 3\Packages\`
+    - On macOS, the path is usually `/Users/<Your Username>/Library/Application Support/Sublime Text 3/Packages/`
+    - On Linux, the path is usually `~/.config/sublime-text-3/Packages/`
+3. **Install the Plugin**: Copy the plugin directory (containing `LingExRef.py` and `Default.sublime-commands` files) into the Sublime Text Packages directory.
+4. **Restart Sublime Text**: This ensures the plugin is loaded and ready to use.
 
 ## Why not use `\nextx` or `\Next`?
 
