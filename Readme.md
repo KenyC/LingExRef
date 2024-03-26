@@ -1,7 +1,7 @@
 LingExRef plugin
 =============================================
 
-![[demo.gif]]
+![Demonstration of package](demo.gif)
 
 This Sublime Text 3 and 4 plugin allows you quickly insert references to surrounding LaTeX linguistic examples. Inspired by [quick-latex-ref](https://github.com/enricoflor/quick-latex-ref) which offers a similar functionality for Emacs.
 
@@ -13,7 +13,7 @@ This Sublime Text 3 and 4 plugin allows you quickly insert references to surroun
  
 ## Installation
 
-(Instructions adapted from [this README](https://github.com/valentinbarral/IpynbPreviewAsMarkdown/))
+(Instructions shamelessly adapted from [this README](https://github.com/valentinbarral/IpynbPreviewAsMarkdown/))
 
 ### Option 1: Install Using Package Control (Recommended)
 
