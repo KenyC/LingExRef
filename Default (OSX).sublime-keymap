@@ -1,3 +1,22 @@
 [
-    {"keys": ["super+alt+a"], "command": "micro_align_multiple"}
+    {
+        "keys": ["super+alt+down"], 
+        "command": "add_ref_to_example",
+        "context": [
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex" }
+        ],
+        "args": {
+            "reverse" : false
+        }
+    },
+    {
+        "keys": ["super+alt+up"], 
+        "command": "add_ref_to_example",
+        "context": [
+            { "key": "selector", "operator": "equal", "operand": "text.tex.latex" }
+        ],
+        "args": {
+            "reverse" : true
+        }
+    },
 ]

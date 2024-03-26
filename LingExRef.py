@@ -4,27 +4,50 @@ import sublime_plugin
 
 class AddRefToExampleCommand(sublime_plugin.TextCommand):
 	def run(self, edit, reverse = False):
+		settings = sublime.load_settings('LingExRef.sublime-settings')
+
 		first_selection = self.view.sel()[0]
 
-		begin_ref_str = r"\cref{"
-		end_ref_str = r"}"
+		ref_command = settings.get("ref_command")
+		if ref_command is None:
+			self.view.window().status_message("'ref_command' setting not set")
+			return
+
+		try:
+			begin_ref_str, end_ref_str = ref_command.split("$")
+		except ValueError:
+			self.view.window().status_message("'ref_command' does not contain exactly one '$' placeholder")
+
+
 		default_name_str = r"example"
 		ref_str = begin_ref_str + default_name_str + end_ref_str
 
+
+		label_command = settings.get("label_command")
+		if label_command is None:
+			self.view.window().status_message("'label_command' setting not set")
+			return
+
+		try:
+			begin_label_str, end_label_str = label_command.split("$")
+		except ValueError:
+			self.view.window().status_message("'label_command' does not contain exactly one '$' placeholder")
+
+		label_regex = re.escape(begin_label_str) + r"([^\}]*)" + re.escape(end_label_str)
 		
 		flags = 0
 		if reverse:
 			flags = flags | sublime.REVERSE
-		example_begin_tag = self.view.find(r"((\\ex)|(\\pex))(?![a-zA-Z])", first_selection.begin(), flags)
+		example_begin_tag = self.view.find(settings.get("ex_start_delimiter"), first_selection.begin(), flags)
 
 
 		if example_begin_tag:
-			example_end_tag = self.view.find(r"((\\a)|(\\xe))(?![a-zA-Z])", example_begin_tag.end())
-			example_label_tag = self.view.find(r"\\label\{([^\}]*)\}", example_begin_tag.end())
+			example_end_tag = self.view.find(settings.get("ex_stop_delimiter"), example_begin_tag.end())
+			example_label_tag = self.view.find(label_regex, example_begin_tag.end())
 
-			if example_end_tag and example_label_tag and example_label_tag < example_end_tag:
+			if is_not_void(example_end_tag) and is_not_void(example_label_tag) and example_label_tag < example_end_tag:
 				label_tag = self.view.substr(example_label_tag)
-				label_name_match = re.search(r'\\label{(.*)}', label_tag)
+				label_name_match = re.search(label_regex, label_tag)
 				if label_name_match:
 					namelabel = label_name_match.group(1)
 					self.view.window().status_message("label:" + namelabel)
@@ -46,8 +69,6 @@ class AddRefToExampleCommand(sublime_plugin.TextCommand):
 					example_begin_tag.b += len(ref_str)
 
 				# Insert "bla" after the found "\ex"
-				begin_label_str = r"\label{"
-				end_label_str = r"}"
 				label_str = begin_label_str + default_name_str + end_label_str
 				self.view.insert(
 					edit, example_begin_tag.end(), 
@@ -74,3 +95,5 @@ class AddRefToExampleCommand(sublime_plugin.TextCommand):
 
 
 
+def is_not_void(region):
+	return region.a != -1 or region.b != -1

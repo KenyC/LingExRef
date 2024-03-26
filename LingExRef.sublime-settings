@@ -1,0 +1,18 @@
+{
+    "label_command" : "\\label{$}",
+    "ref_command"   : "\\ref{$}",
+
+    // For gb4e
+    "ex_start_delimiter" : "\\\\ex(?![a-zA-Z])",
+    "ex_stop_delimiter"   : "(\\\\begin\\{xlist\\})|(\\\\end\\{exe\\})|\\\\ex(?![a-zA-Z])"
+
+    // For expex
+    // "ex_start_delimiter" : "((\\\\ex)|(\\\\pex))(?![a-zA-Z])",
+    // "ex_stop_delimiter"  : "((\\\\a)|(\\\\xe))(?![a-zA-Z])"
+
+    // For linguex
+    // "ex_start_delimiter" : "\\\\exg?\\.",
+    // "ex_stop_delimiter"   : "(\\\\a\\.)|(^\\s*$)"
+
+
+}
