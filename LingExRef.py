@@ -17,6 +17,7 @@ class AddRefToExampleCommand(sublime_plugin.TextCommand):
 			begin_ref_str, end_ref_str = ref_command.split("$")
 		except ValueError:
 			self.view.window().status_message("'ref_command' does not contain exactly one '$' placeholder")
+			return
 
 
 		default_name_str = r"example"
@@ -32,6 +33,7 @@ class AddRefToExampleCommand(sublime_plugin.TextCommand):
 			begin_label_str, end_label_str = label_command.split("$")
 		except ValueError:
 			self.view.window().status_message("'label_command' does not contain exactly one '$' placeholder")
+			return
 
 		label_regex = re.escape(begin_label_str) + r"([^\}]*)" + re.escape(end_label_str)
 		
